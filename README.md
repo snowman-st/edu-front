@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # N3-admin
 
 vue / vuex / vue-router / N3-components /axios
@@ -168,3 +169,6 @@ npm run build
 + Form
 
 ![Form](./screenshot/form.png)
+=======
+# edu-front
+>>>>>>> ef9211082ddf902cf09c73ff21e23086e2c45be9
