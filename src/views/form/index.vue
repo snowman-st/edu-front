@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <section class="user-edit">
     <n3-form
       ref="form"
@@ -249,4 +249,12 @@
       color: #999;
     }
   }
-</style>
+</style> -->
+<template>
+  <div>this place is used to show the charts!</div>
+</template>
+<script type="text/javascript">
+  export default {
+    name: 'firstform'
+  }
+</script>

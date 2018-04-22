@@ -1,28 +1,23 @@
-import Login from '../views/login'
 import CommonLayout from '../layout'
-import Register from '../views/register'
-
-import NormalForm from '../views/form'
-import NormalTable from '../views/table/index.vue'
-import Secondtable from '../views/table/sec.vue'
-import ThirdTable from '../views/table/third.vue'
-import ForthTable from '../views/table/forth.vue'
-import FifthTable from '../views/table/fifth.vue'
 
 const routes = [
   // Login View
   {
     path: '/login',
-    component: Login,
+    component: resolve => require(['../views/login'], resolve),
     name: 'login',
     menu: false
   },
   //Register View
   {
     path: '/register',
-    component: Register,
+    component: resolve => require(['../views/register'], resolve),
     name: 'register',
     menu: false
+  },
+  {
+    path: '/',
+    redirect: '/table/'
   },
   // Normal View
   {
@@ -53,7 +48,7 @@ const routes = [
     children: [
       {
         path: '/table/',
-        component: NormalTable,
+        component: resolve => require(['../views/table/index.vue'], resolve),
         name: 'normalTable',
         meta: {
           label: '完整性'
@@ -61,7 +56,7 @@ const routes = [
       },
       {
         path: '/table2/',
-        component: Secondtable,
+        component: resolve => require(['../views/table/sec.vue'], resolve),
         name: 'Secondtable',
         meta: {
           label: '科学性'
@@ -69,24 +64,24 @@ const routes = [
       },
       {
         path: '/table3/',
-        component: Secondtable,
-        name: 'Secondtable',
+        component: resolve => require(['../views/table/third.vue'], resolve),
+        name: 'Thirdtable',
         meta: {
           label: '时效性'
         }
       },
       {
         path: '/table4/',
-        component: Secondtable,
-        name: 'Secondtable',
+        component: resolve => require(['../views/table/forth.vue'], resolve),
+        name: 'Forthtable',
         meta: {
           label: '权威性'
         }
       },
       {
         path: '/table5/',
-        component: Secondtable,
-        name: 'Secondtable',
+        component: resolve => require(['../views/table/fifth.vue'], resolve),
+        name: 'Fifthtable',
         meta: {
           label: '可用性'
         }
@@ -106,17 +101,13 @@ const routes = [
     children: [
       {
         path: '/action/',
-        component: NormalForm,
+        component: resolve => require(['../views/form'], resolve),
         name: 'normalForm',
         meta: {
           label: '学生行为'
         }
       }
     ]
-  },
-  {
-    path: '*',
-    redirect: '/table/'
   }
 ]
 
