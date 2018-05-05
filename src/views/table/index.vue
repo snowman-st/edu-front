@@ -242,6 +242,9 @@
 </template>
 <script type="text/javascript">
   export default {
-    name: 'firsttable'
+    name: 'firsttable',
+    created(){
+      console.log('this is homepage!')
+    }
   }
 </script>

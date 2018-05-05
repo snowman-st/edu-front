@@ -174,7 +174,7 @@
       connectDots();
       drawDots();
 
-      requestAnimationFrame(animateDots);	
+      requestAnimationFrame(animateDots); 
     }
 
     canvas.onmousemove = function(e) {
@@ -188,9 +188,9 @@
     };
 
     createDots();
-    requestAnimationFrame(animateDots);	
+    requestAnimationFrame(animateDots); 
   }
-
+  import axios from 'axios'
   export default {
     data () {
       return {
@@ -202,7 +202,7 @@
       }
     },
     methods: {
-      ...mapActions(['login']),
+      // ...mapActions(['login']),
       saveAccount () {
         this.remember.length && storage.setItem(STORAGE_KEY.ACCOUNT, this.account)
       },
@@ -231,6 +231,30 @@
         this.saveAccount()
         this.submit()
       },
+      login(dict) {
+        axios.post('http://127.0.0.1:8000/login/',dict)
+        .then(response => {
+          console.log(response);
+            //本地存储用户信息
+          // cookie.setCookie('name',this.userName,7);
+          // cookie.setCookie('token',response.data.token,7)
+          //   //存储在store
+            // 更新store数据
+          // that.$store.dispatch('setInfo');
+            //跳转到首页页面
+          this.$router.push({ name: 'table'})
+        })
+        .catch(error => {
+          this.loading = false
+          this.n3Alert({
+            content: error || '登录失败，请检查账号密码~',
+            type: 'success',
+            placement: 'top-right',
+            duration: 2000,
+            width: '240px'
+          })
+        })
+      },
       add () {
         this.$router.push({
           name: 'register'
@@ -238,30 +262,10 @@
       },
       submit () {
         this.loading = true
-        this.login({
-          account: this.account,
-          password: this.password
-        })
-          .then(data => {
-            this.loading = false
-            if (this.$route.query.back) {
-               this.$router.replace(this.$route.query.back)
-            } else {
-              this.$router.replace({
-                name: 'table'
-              })
-            }
-          })
-          .catch(error => {
-            this.loading = false
-            this.n3Alert({
-              content: error || '登录失败，请检查账号密码~',
-              type: 'success',
-              placement: 'top-right',
-              duration: 2000,
-              width: '240px'
-            })
-          })
+        var params = new URLSearchParams()
+        params.append('username',this.account)
+        params.append('password',this.password)
+        this.login(params)
       },
       render: render
     },

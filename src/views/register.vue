@@ -43,7 +43,7 @@
           <n3-input
             :rules="[{type:'required'}]"
             :custom-validate="phoneValidate"
-            v-model="model.phone"
+            v-model="model.mobile"
             width="200px"
             type="number"
           >
@@ -67,26 +67,16 @@
 </template>
 
 <script>
-  import API from '../api'
+  import axios from 'axios'
   import qs from 'qs'
-  import { mapState } from 'vuex'
-  import { randomPassword, dateFormat } from '../utils'
-  
   export default {
     name: 'Register',
-    computed: {
-      ...mapState(['user'])
-    },
     data () {
       return {
         model: {
           username: '',
           password: '',
-          phone: '',
-          priority: 1,
-          limitType: '1',
-          cacheExpireTime: '24',
-          expireDate: dateFormat(Date.now(), 'YYYY-MM-DD')
+          mobile: '',
         },
         loading: false
       }
@@ -97,15 +87,15 @@
         this.model = {
           username: '',
           password: '',
-          phone: '',
+          mobile: '',
         }
         this.loading = false
       },
       addUser () {
-        let cond = Object.assign({}, this.model)
+        // let cond = Object.assign({}, this.model)
         // cond.expireDate = new Date(cond.expireDate).valueOf()
         this.loading = true
-        this.$http.post(API.USER_ADD, qs.stringify(cond))
+        axios.post('http://127.0.0.1:8000/register/',this.model)
           .then(data => {
             this.loading = false
             this.n3Alert({
@@ -115,7 +105,7 @@
               duration: 2000,
               width:'240px' // 内容不确定，建议设置width
             })
-            this.$router.push('/table/')
+            this.$router.push('login/')
           })
           .catch(error => {
             this.loading = false

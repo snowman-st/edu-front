@@ -3,6 +3,9 @@
 </template>
 <script type="text/javascript">
 	export default {
-		name: 'thirdtable'
+		name: 'thirdtable',
+		created() {
+			console.log('vue3 is created!')
+		}
 	}
 </script>

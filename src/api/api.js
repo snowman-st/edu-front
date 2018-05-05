@@ -1,8 +1,11 @@
 import {
   IS_DEV
-} from './config'
+} from '../config' ;
+import axios from 'axios';
 
-const API = {
+let local_host = 'http://127.0.0.1:8000';
+
+export const API = {
   // ROOT: IS_DEV ? '/api' : 'http://abc.com/api',
   ROOT: '/api',
 
@@ -10,6 +13,8 @@ const API = {
   USER_ADD: '/user/add',
   RECORD_LIST: '/user/getRecords',
   QUERY_LIST: '/user/getRecordsBy'
-}
+};
 
-export default API
+export const getmsg = params => {
+	return axios.get('${local_host}/table2/')
+}

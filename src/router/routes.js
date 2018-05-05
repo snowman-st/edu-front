@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/table/'
+    redirect: '/login/'
   },
   // Normal View
   {
@@ -59,7 +59,7 @@ const routes = [
         component: resolve => require(['../views/table/sec.vue'], resolve),
         name: 'Secondtable',
         meta: {
-          label: '科学性'
+          label: '时效性'
         }
       },
       {
@@ -67,7 +67,7 @@ const routes = [
         component: resolve => require(['../views/table/third.vue'], resolve),
         name: 'Thirdtable',
         meta: {
-          label: '时效性'
+          label: '权威性'
         }
       },
       {
@@ -75,7 +75,7 @@ const routes = [
         component: resolve => require(['../views/table/forth.vue'], resolve),
         name: 'Forthtable',
         meta: {
-          label: '权威性'
+          label: '可用性'
         }
       },
       {
@@ -83,7 +83,7 @@ const routes = [
         component: resolve => require(['../views/table/fifth.vue'], resolve),
         name: 'Fifthtable',
         meta: {
-          label: '可用性'
+          label: '组织方式'
         }
       },
     ]

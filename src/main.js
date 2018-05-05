@@ -5,7 +5,7 @@ import 'es6-shim'
 import Vue from 'vue'
 import N3 from 'N3-components'
 import 'N3-components/dist/index.min.css'
-import axios from './utils/axios'
+import axios from 'axios'
 import extend from './extend'
 
 Vue.use(axios)
