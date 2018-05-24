@@ -15,6 +15,15 @@ export const API = {
   QUERY_LIST: '/user/getRecordsBy'
 };
 
+export const testout = params => {
+	console.log('this is a out function');
+}
+
+export const getsubject = params => {
+	return axios.get('http://127.0.0.1:8000/table/');
+}
+
 export const getmsg = params => {
-	return axios.get('${local_host}/table2/')
+  console.log('excuted!')
+  return axios.get('http://127.0.0.1:8000/table2/');
 }

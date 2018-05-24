@@ -174,7 +174,7 @@
       connectDots();
       drawDots();
 
-      requestAnimationFrame(animateDots); 
+      requestAnimationFrame(animateDots);	
     }
 
     canvas.onmousemove = function(e) {
@@ -188,7 +188,7 @@
     };
 
     createDots();
-    requestAnimationFrame(animateDots); 
+    requestAnimationFrame(animateDots);	
   }
   import axios from 'axios'
   export default {

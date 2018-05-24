@@ -12,13 +12,13 @@
 	</div>
 </template>
 <script type="text/javascript">
-import {getmsg} from '../../api/api'
+import {getmsg,testout} from '../../api/api'
 import axios from 'axios'
 export default {
 	name: 'secondtable',
 	data() {
 		return {
-			msg:{},
+			msg:['hello'],
 			users: []
 		}
 	},
@@ -29,9 +29,7 @@ export default {
         		.catch(error => console.log(error))
     	},
 		getm(){
-			getmsg().then((response)=> {
-				this.msg = response.data
-			})
+			getmsg().then(response => {this.users = response.data})
 			.catch(function(error) {
 				console.log('the data can not return back!');
 			});
@@ -39,8 +37,8 @@ export default {
 	},
 	created(){
 		this.getm()
-		this.getUsers()
-		console.log("the getmsg is be used!")
+		// this.getUsers()
+		// console.log("the getmsg is be used!")
 	}
 }
 </script>
