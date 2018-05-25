@@ -27,3 +27,18 @@ export const getmsg = params => {
   console.log('excuted!')
   return axios.get('http://127.0.0.1:8000/table2/');
 }
+
+export const get3msg = params => {
+  console.log('excuted!')
+  return axios.get('http://127.0.0.1:8000/table3/');
+}
+
+export const get4msg = params => {
+  console.log('excuted!')
+  return axios.get('http://127.0.0.1:8000/table4/');
+}
+
+export const get5msg = params => {
+  console.log('excuted!')
+  return axios.get('http://127.0.0.1:8000/table5/');
+}
