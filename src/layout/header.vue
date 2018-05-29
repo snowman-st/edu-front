@@ -1,7 +1,7 @@
 <template>
   <div class="app-header clearfix">
     <n3-column :col="10" class="logo-field">
-      <img src="../assets/logo.png" class="logo"> <span>教育资源评价系统</span>
+      <img src="../assets/logo.jpg" class="logo"> <span>教育资源评价系统</span>
     </n3-column>
     <n3-column class="logout-field">
       <n3-tooltip class="tip-logout" content="登出" placement="bottom" trigger="hover">
