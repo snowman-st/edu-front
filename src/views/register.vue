@@ -1,14 +1,10 @@
 <template>
-  <section calss="register-wrap">
-    <div class="user-edit">
-      <n3-form
-        ref="form"
-        validate
-      >
+  <section class="register-wrap">
+      <n3-form ref="form"  class="user-edit"  validate>
+        <h3>用户注册</h3>
         <n3-form-item
           class="field"
-          label="用户名"
-          need
+          label="账 号"
           :label-col="3"
         >
           <n3-input
@@ -16,13 +12,13 @@
             v-model="model.username"
             width="200px"
             :custom-validate="usernameValidate"
+            placeholder="输入6-18位字符"
           >
           </n3-input>
         </n3-form-item>
         <n3-form-item
           class="field"
-          label="密码"
-          need
+          label="密  码"
           :label-col="3"
         >
           <n3-input
@@ -30,14 +26,14 @@
             width="200px"
             :rules="[{type:'required'}]"
             :custom-validate="passwordValidate"
-            class="fl"
+            type="password"
+             placeholder="输入6-18位字符"
           >
           </n3-input>
         </n3-form-item>
         <n3-form-item
           class="field"
-          label="手机号"
-          need
+          label="手 机"
           :label-col="3"
         >
           <n3-input
@@ -46,6 +42,7 @@
             v-model="model.mobile"
             width="200px"
             type="number"
+            placeholder="输入11位数字"
           >
           </n3-input>
         </n3-form-item>
@@ -62,7 +59,6 @@
           </n3-button>
         </n3-form-item>
       </n3-form>
-    </div>
   </section>
 </template>
 
@@ -92,8 +88,6 @@
         this.loading = false
       },
       addUser () {
-        // let cond = Object.assign({}, this.model)
-        // cond.expireDate = new Date(cond.expireDate).valueOf()
         this.loading = true
         axios.post('http://127.0.0.1:8000/register/',this.model)
           .then(data => {
@@ -185,7 +179,7 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
-    background: #111;
+    background-image: url('../assets/images/loginback.jpg');
     canvas {
       width: 100%;
       height: 100%;
@@ -208,11 +202,22 @@
     border: 1px solid #ccc;
     border-radius: 12px;
     box-shadow: 2px 2px 32px 1px rgba(0, 0, 0, .45);
-    opacity: .75;
+    opacity: .85;
+    background: #121356;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 12px 0;
+      font-weight: normal;
+      font-size: 22px;
+      text-align: center;
+      color: #fff;
+    }
     .field {
       display: block;
       margin: 0 auto;
       padding: 6px 0;
+      color: #fff;
     }
     .submit-btn {
       width: 200px;

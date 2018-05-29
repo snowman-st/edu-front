@@ -16,7 +16,7 @@ export const API = {
 };
 
 export const testout = params => {
-	console.log('this is a out function');
+	console.log('this is an out function');
 }
 
 export const getsubject = params => {
