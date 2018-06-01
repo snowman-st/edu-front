@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: 'login/'
+    redirect: 'table/'
   },
   // Normal View
   {

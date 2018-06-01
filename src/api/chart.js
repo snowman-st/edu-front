@@ -1,51 +1,358 @@
 var echarts = require('echarts')
+import {get3msg} from './api'
 
 export const drawbar = (element,xdata,seriesdata,seriesname) => {
-	//绘制柱状图，element为此图要嵌入到网页上的元素标识，
-	let myChart = echarts.init(document.getElementById(element))
-			myChart.setOption({
-				tooltip : { trigger: 'axis' },
-				title:{
-					text:'Bar Chart'
-				},
-				toolbox: {
-					show:true,
-					feature: {
-						mark : {show: true},
-					}
-				},
-				calculable : true,
-				legend: { 
-					show:true,
-					data: seriesname
-				},
-				xAxis : [ 
-					{
-						type : 'category',
-						axisLabel:{
-							interval:0
-						},
-						data : xdata
-					} 
-				],
-				yAxis : [ 
-					{
-					type : 'value',
-					axisLabel : { formatter: '{value}%' } 
-					} 
-				],
-				series : [ 
-					{ 
-						name:seriesname,
-						type:'bar',
-						data: seriesdata
-					}
-				]
-			});
+    //绘制柱状图，element为此图要嵌入到网页上的元素标识，
+    let myChart = echarts.init(document.getElementById(element))
+            myChart.setOption({
+                tooltip : { trigger: 'axis' },
+                left:'center',
+                title:{
+                    text:'小学阶段学科版本完整度',
+                    left:'center',
+                    textStyle:{
+                                //文字颜色
+                                color:'#030303',
+                                //字体风格,'normal','italic','oblique'
+                                fontStyle:'oblique',
+                                //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                                fontWeight:'normal',
+                                //字体系列
+                                fontFamily:'微软雅黑',
+                                //字体大小
+　　　　                            fontSize:16
+
+                        }
+                },
+                toolbox: {
+                    show:true,
+                    feature: {
+                        mark : {show: true},
+                    }
+                },
+                calculable : true,
+                legend: { 
+                    show:true,
+                    data: seriesname
+                },
+                xAxis : [ 
+                    {
+                        type : 'category',
+                        name:"科目",
+                        axisLabel:{
+                            interval:0
+                        },
+                        data : xdata
+
+                    } 
+                ],
+                yAxis : [ 
+                    {
+                    type : 'value',
+                    name:"科目版本完整百分比",
+                    axisLabel : { formatter: '{value}%' } 
+                    } 
+                ],
+                series : [ 
+                    { 
+                        name:seriesname,
+                        type:'bar',
+                        data: seriesdata,
+                        barWidth: 30,
+                        itemStyle:{
+                                    normal:{
+                                        color:'#008B8B'
+                                    }
+                                }
+                    }
+                ]
+            });
+};
+
+export const draw5bar = (element,xdata,seriesdata,seriesname) => {
+    //绘制柱状图，element为此图要嵌入到网页上的元素标识，
+    let myChart = echarts.init(document.getElementById(element))
+            myChart.setOption({
+                tooltip : { trigger: 'axis' },
+                left:'center',
+                title:{
+                    text:'不同学科资源链接数量',
+                    left:'center',
+                    textStyle:{
+                                //文字颜色
+                                color:'#030303',
+                                //字体风格,'normal','italic','oblique'
+                                fontStyle:'normal',
+                                //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                                fontWeight:'normal',
+                                //字体系列
+                                fontFamily:'微软雅黑',
+                                //字体大小
+　　　　                            fontSize:30
+
+                        }
+                },
+                toolbox: {
+                    show:true,
+                    feature: {
+                        mark : {show: true},
+                    }
+                },
+                calculable : true,
+                legend: { 
+                    show:true,
+                    data: seriesname
+                },
+                xAxis : [ 
+                    {
+                        type : 'category',
+                        name:"科目",
+                        axisLabel:{
+                            interval:0
+                        },
+                        data : xdata
+
+                    } 
+                ],
+                yAxis : [ 
+                    {
+                    type : 'value',
+                    name:"资源链接量",
+                    axisLabel : { formatter: '{value}' } 
+                    } 
+                ],
+                series : [ 
+                    { 
+                        name:seriesname,
+                        type:'bar',
+                        data: seriesdata,
+                        barWidth: 30,
+                        itemStyle:{
+                                    normal:{
+                                        color:'#008B8B'
+                                    }
+                                }
+                    }
+                ]
+            });
+};
+
+
+export const draw4bar1 = (element,xdata,seriesdata,seriesname) => {
+    //绘制柱状图，element为此图要嵌入到网页上的元素标识，
+    let myChart = echarts.init(document.getElementById(element))
+            myChart.setOption({
+                tooltip : { trigger: 'axis' },
+                left:'center',
+                title:{
+                    text:'学科点击量',
+                    left:'center',
+                    textStyle:{
+                                //文字颜色
+                                color:'#030303',
+                                //字体风格,'normal','italic','oblique'
+                                fontStyle:'oblique',
+                                //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                                fontWeight:'normal',
+                                //字体系列
+                                fontFamily:'微软雅黑',
+                                //字体大小
+　　　　                            fontSize:16
+
+                        }
+                },
+                toolbox: {
+                    show:true,
+                    feature: {
+                        mark : {show: true},
+                    }
+                },
+                calculable : true,
+                legend: { 
+                    show:true,
+                    data: seriesname
+                },
+                xAxis : [ 
+                    {
+                        type : 'category',
+                        name:"科目",
+                        axisLabel:{
+                            interval:0
+                        },
+                        data : xdata
+
+                    } 
+                ],
+                yAxis : [ 
+                    {
+                    type : 'value',
+                    name:'点击量',
+                    axisLabel : { formatter: '{value}' } 
+                    } 
+                ],
+                series : [ 
+                    { 
+                        name:seriesname,
+                        type:'bar',
+                        data: seriesdata,
+                        barWidth: 30,
+                        itemStyle:{
+                                    normal:{
+                                        color:'#008B8B'
+                                    }
+                                }
+                    }
+                ]
+            });
+};
+
+export const draw4bar2 = (element,xdata,seriesdata,seriesname) => {
+    //绘制柱状图，element为此图要嵌入到网页上的元素标识，
+    let myChart = echarts.init(document.getElementById(element))
+            myChart.setOption({
+                tooltip : { trigger: 'axis' },
+                left:'center',
+                title:{
+                    text:'学科好评量',
+                    left:'center',
+                    textStyle:{
+                                //文字颜色
+                                color:'#030303',
+                                //字体风格,'normal','italic','oblique'
+                                fontStyle:'oblique',
+                                //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                                fontWeight:'normal',
+                                //字体系列
+                                fontFamily:'微软雅黑',
+                                //字体大小
+　　　　                            fontSize:16
+
+                        }
+                },
+                toolbox: {
+                    show:true,
+                    feature: {
+                        mark : {show: true},
+                    }
+                },
+                calculable : true,
+                legend: { 
+                    show:true,
+                    data: seriesname
+                },
+                xAxis : [ 
+                    {
+                        type : 'category',
+                        name:"科目",
+                        axisLabel:{
+                            interval:0
+                        },
+                        data : xdata
+
+                    } 
+                ],
+                yAxis : [ 
+                    {
+                    type : 'value',
+                    name:'好评量',
+                    axisLabel : { formatter: '{value}' } 
+                    } 
+                ],
+                series : [ 
+                    { 
+                        name:seriesname,
+                        type:'bar',
+                        data: seriesdata,
+                        barWidth: 30,
+                        itemStyle:{
+                                    normal:{
+                                        color:'#008B8B'
+                                    }
+                                }
+                    }
+                ]
+            });
+};
+
+
+
+export const draw3bar = (element,xdata,seriesdata,seriesname) => {
+    //绘制柱状图，element为此图要嵌入到网页上的元素标识，
+    let myChart = echarts.init(document.getElementById(element))
+    var option = {
+                tooltip : { trigger: 'axis' },
+                left:'center',
+                title:{
+                    text:'不同学校上传资源数量',
+                    left:'center',
+                    textStyle:{
+                                //文字颜色
+                                color:'#030303',
+                                //字体风格,'normal','italic','oblique'
+                                fontStyle:'oblique',
+                                //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                                fontWeight:'normal',
+                                //字体系列
+                                fontFamily:'微软雅黑',
+                                //字体大小
+　　　　                            fontSize:16
+
+                        }
+                },
+                toolbox: {
+                    show:true,
+                    feature: {
+                        mark : {show: true},
+                    }
+                },
+                calculable : true,
+                legend: { 
+                    show:true,
+                    data: seriesname
+                },
+                grid: { // 控制图的大小，调整下面这些值就可以，
+                        x: 40,
+                        x2: 100,
+                        y2: 150,// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
+                },
+                xAxis : [ 
+                    {
+                        type : 'category',
+                        name:'学校',
+                        axisLabel:{
+                            interval:0,
+                            rotate:-40
+                        },
+                        data : xdata
+
+                    } 
+                ],
+                yAxis : [ 
+                    {
+                    type : 'value',
+                    name:'资源上传量',
+                    axisLabel : { formatter: '{value}' } 
+                    } 
+                ],
+                series : [ 
+                    { 
+                        name:seriesname,
+                        type:'bar',
+                        data: seriesdata,
+                        barWidth: 30,
+                        itemStyle:{
+                                    normal:{
+                                        color:'#008B8B'
+                                    }
+                                }
+                    }
+                ]
+            };
+    myChart.setOption(option,true)
 };
 
 export const drawtree = (element,treedata,have) =>{
-	// var myChart = echarts.init(document.getElementById(element))
+    // var myChart = echarts.init(document.getElementById(element))
     var worldMapContainer = document.getElementById(element);
     var resizeWorldMapContainer = function () {
     worldMapContainer.style.width = element.clientWidth+'px';
@@ -55,17 +362,30 @@ export const drawtree = (element,treedata,have) =>{
     };
     resizeWorldMapContainer();
     var myChart = echarts.init(worldMapContainer)
-	var option = {
+    var option = {
     title : {
         text: '小学阶段学科完整度',
-        position:'center'
-    },
+        left:'center',
+        textStyle:{
+                    //文字颜色
+                    color:'#030303',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'oblique',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'normal',
+                    //字体系列
+                    fontFamily:'微软雅黑',
+                    //字体大小
+　　　　                fontSize:16
+
+                        }
+                },
     toolbox: {
         show : true,
     },
     legend:{
-    	data: ['存在','缺失'],
-    	left: 'right'
+        data: ['存在','缺失'],
+        left: 'right'
     },
     series : [
         {
@@ -80,58 +400,60 @@ export const drawtree = (element,treedata,have) =>{
             // layerPadding: 200,
             hoverable: true,
             roam: true,
-            symbolSize: 20,
+            symbolSize: 16,
             symbol:'circle',
             nodePadding: 2,
             itemStyle: {
                 normal: {
                     color: function(params){
-                    		var colorlist=['red','gray','brown']
-                    		if (params.name=='学科')
-                    			return colorlist[2]
-                    		if (have.toString().indexOf(params.name)<0)
-                    			return colorlist[1]
-                    		else return colorlist[0]
-                    		
-                    	},
+                            var colorlist=['#008B8B','#8A8A8A','#030303']
+                            if (params.name=='学科')
+                                return colorlist[2]
+                            if (have.toString().indexOf(params.name)<0)
+                                return colorlist[1]
+                            else return colorlist[0]
+                            
+                        },
+                    borderColor:'#030303',
+                    borderWidth: 0,
                     label: {
                         show: true,
                         formatter: "{b}",
                         position: 'left',
                         textStyle: {
-                            color: '#000',
-                            fontSize: 25
+                            color: '#030303',
+                            fontSize: 16
                         }
                     },
                     lineStyle: {
-                        color: 'brown',
-                        type: 'solid', // 'curve'|'broken'|'solid'|'dotted'|'dashed'
-                        width: 5,
+                        color: '#030303',
+                        type: 'dashed', // 'curve'|'broken'|'solid'|'dotted'|'dashed'
+                        width: 2,
                         length:10
                     }
-                },
-                emphasis: {
-                    color: '#000',
-                    // label: 
-                    //     show: false
-                    // },
-                    borderWidth: 1
-                }
+                    },
+                    emphasis: {
+                                color: '#030303',
+                                // label: 
+                                //     show: false
+                                // },
+                                borderWidth: 1
+                    }
             },
             leaves:{
-            	label:{
-            		normal:{
-            			color:'black',
-            			position: 'right',
-            	},
-            	}
-            	
+                label:{
+                    normal:{
+                        color:'black',
+                        position: 'right',
+                },
+                }
+                
             },
             
             data: treedata
         },    ]
 };
-	myChart.setOption(option);
+    myChart.setOption(option);
     window.onresize = function () {
     resizeWorldMapContainer();
     myChart.resize();
@@ -139,47 +461,314 @@ export const drawtree = (element,treedata,have) =>{
 }
 
 
-export const drawlinechart1 = (element) => {
+
+export const drawlinechart2 = (element, xdata, ydata,y2data,y3data) => {
 
     let myChart = echarts.init(document.getElementById(element));
         myChart.setOption({
-            xAxis: {
-                data: ["2017", "2018", "2019"],
-                name: 'time'
-            },
-            yAxis : {},
-                series: [{
-                    name: 'score',
-                    type: 'line',
-                    data: [90, 93.33333333333333, 100],
-                    itemStyle: {   
-                        normal: {
-                        color: 'hotpink'
-                        }
+            title : {
+                text: '教学资源时效性评价',
+                left:'center',
+                textStyle:{
+                    //文字颜色
+                    color:'#030303',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'oblique',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'normal',
+                    //字体系列
+                    fontFamily:'微软雅黑',
+                    //字体大小
+　　　　                fontSize:16
+
                     }
-                }]
+                },
+            xAxis: [{
+                // data: ["2017","2018"],
+                    type : 'category',
+                    name: '年段',        //X轴名称单位
+                    nameLocation:'end', //名称的位置
+                    nameTextStyle:{     //名称的样式
+                        color:'#030303',
+                        fontSize:'16px'
+                    },
+                    nameGap:0,  //名称与X轴的距离
+                    boundaryGap: true,//坐标的刻度是否在中间
+                    min:'3',//坐标轴刻度最小值
+                    max:'dataMax', //坐标轴刻度的最大值
+                    axisLine:{//坐标轴线条相关设置(颜色等)
+                        lineStyle:{
+                            color:'#030303'
+                        }
+                    },
+                    axisTick:{ //坐标轴刻度相关设置
+                        length:'0' //我把长度设置成0了
+                    },
+                    axisLabel:{ //坐标轴刻度标签
+                        margin:7, //刻度标签与轴线之间的距离
+                        textStyle:{
+                            color:"#030303",  //坐标轴刻度文字的颜色
+                            fontSize:'16px' //坐标轴刻度文字的大小
+                        }
+                    },
+                    data: xdata
+                
+            }],
+            legend : {
+                data: ['更新速度评价得分','更新资源来源评价得分','更新资源完整性评价得分'],
+                x: 'center',
+                y: '5%',
+                padding: 10,
+            },
+            yAxis : [
+                {
+                    type : 'value', //类型数值轴
+                    name:'评价得分',    //坐标轴名称
+                    nameTextStyle:{     //名称的样式
+                        color:'#030303',
+                        fontSize:'16px'
+                    },
+                    nameGap:3,  //名称与Y轴的距离
+                    axisTick:{ //坐标轴刻度相关设置
+                        length:'0' //我设置成0了
+                    },
+                    axisLine:{//坐标轴线条相关设置(颜色等)
+                        lineStyle:{
+                            color:'#030303'
+                        }
+                    },
+                    axisLabel:{//坐标轴标签相关设置,距离颜色等
+                        margin:7,
+                        //formatter: '{value} °C',//标签内容内置的格式转化器比如这个表示在后面加一个c
+                        textStyle:{
+                            color:"#030303",  //坐标轴刻度文字的颜色
+                            fontSize:'16px' //坐标轴刻度文字的大小
+                        },
+                    },
+                    splitLine:{    //坐标轴分隔线。默认数值轴显示，类目轴不显示。
+                        show:false
+                    }
+                }
+            ],
+            grid:{ //直角坐标系内绘图网格
+                left:36  //由于1000显示被挡住了,所以我让他左移36px;这个功能类似于paddingleft
+            },
+            series: [
+                {
+                    name: '更新速度评价得分',
+                    type: 'line',
+                    // data: [90, 93.33333333333333],
+                    data: ydata,
+                },
+                {
+                    name: '更新资源来源评价得分',
+                    type: 'line',
+                    // data: [90, 93.33333333333333],
+                    data: y2data,
+                },
+                {
+                    name: '更新资源完整性评价得分',
+                    type: 'line',
+                    // data: [90, 93.33333333333333],
+                    data: y3data,
+                }
+                ]
         })
     console.log('画出来了')
 };
-
-export const drawlinechart2 = (element, xdata, ydata) => {
+export const drawlinechart3 = (element, xdata, ydata) => {
 
     let myChart = echarts.init(document.getElementById(element));
         myChart.setOption({
-            xAxis: {
+            title : {
+                text: '教学资源更新速度',
+                left:'center',
+                textStyle:{
+                    //文字颜色
+                    color:'#030303',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'oblique',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'normal',
+                    //字体系列
+                    fontFamily:'微软雅黑',
+                    //字体大小
+　　　　                fontSize:16
+
+                    }
+                },
+            xAxis: [{
                 // data: ["2017","2018"],
-                data: xdata,
-                name: 'time'
+                    type : 'category',
+                    name: '年段',        //X轴名称单位
+                    nameLocation:'end', //名称的位置
+                    nameTextStyle:{     //名称的样式
+                        color:'#030303',
+                        fontSize:'16px'
+                    },
+                    nameGap:0,  //名称与X轴的距离
+                    boundaryGap: true,//坐标的刻度是否在中间
+                    min:'3',//坐标轴刻度最小值
+                    max:'dataMax', //坐标轴刻度的最大值
+                    axisLine:{//坐标轴线条相关设置(颜色等)
+                        lineStyle:{
+                            color:'#030303'
+                        }
+                    },
+                    axisTick:{ //坐标轴刻度相关设置
+                        length:'0' //我把长度设置成0了
+                    },
+                    axisLabel:{ //坐标轴刻度标签
+                        margin:7, //刻度标签与轴线之间的距离
+                        textStyle:{
+                            color:"#030303",  //坐标轴刻度文字的颜色
+                            fontSize:'16px' //坐标轴刻度文字的大小
+                        }
+                    },
+                    data: xdata
+                
+            }],
+            yAxis : [
+                {
+                    type : 'value', //类型数值轴
+                    name:'评价得分',    //坐标轴名称
+                    nameTextStyle:{     //名称的样式
+                        color:'#030303',
+                        fontSize:'16px'
+                    },
+                    nameGap:3,  //名称与Y轴的距离
+                    axisTick:{ //坐标轴刻度相关设置
+                        length:'0' //我设置成0了
+                    },
+                    axisLine:{//坐标轴线条相关设置(颜色等)
+                        lineStyle:{
+                            color:'#030303'
+                        }
+                    },
+                    axisLabel:{//坐标轴标签相关设置,距离颜色等
+                        margin:7,
+                        //formatter: '{value} °C',//标签内容内置的格式转化器比如这个表示在后面加一个c
+                        textStyle:{
+                            color:"#030303",  //坐标轴刻度文字的颜色
+                            fontSize:'16px' //坐标轴刻度文字的大小
+                        },
+                    },
+                    splitLine:{    //坐标轴分隔线。默认数值轴显示，类目轴不显示。
+                        show:false
+                    }
+                }
+            ],
+            grid:{ //直角坐标系内绘图网格
+                left:36  //由于1000显示被挡住了,所以我让他左移36px;这个功能类似于paddingleft
             },
-            yAxis : {},
-                series: [{
-                    name: 'score',
+            series: [{
+                    name: '评价得分',
                     type: 'line',
                     // data: [90, 93.33333333333333],
                     data: ydata,
                     itemStyle: {   
                         normal: {
-                        color: 'hotpink'
+                        color: '#008B8B'
+                        }
+                    }
+                }]
+        })
+    console.log('画出来了')
+};
+
+export const drawlinechart4 = (element, xdata, ydata) => {
+
+    let myChart = echarts.init(document.getElementById(element));
+        myChart.setOption({
+            title : {
+                text: '更新资源来源质量',
+                left:'center',
+                textStyle:{
+                    //文字颜色
+                    color:'#030303',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'oblique',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'normal',
+                    //字体系列
+                    fontFamily:'微软雅黑',
+                    //字体大小
+　　　　                fontSize:16
+
+                    }
+                },
+            xAxis: [{
+                // data: ["2017","2018"],
+                    type : 'category',
+                    name: '年段',        //X轴名称单位
+                    nameLocation:'end', //名称的位置
+                    nameTextStyle:{     //名称的样式
+                        color:'#030303',
+                        fontSize:'16px'
+                    },
+                    nameGap:0,  //名称与X轴的距离
+                    boundaryGap: true,//坐标的刻度是否在中间
+                    min:'3',//坐标轴刻度最小值
+                    max:'dataMax', //坐标轴刻度的最大值
+                    axisLine:{//坐标轴线条相关设置(颜色等)
+                        lineStyle:{
+                            color:'#030303'
+                        }
+                    },
+                    axisTick:{ //坐标轴刻度相关设置
+                        length:'0' //我把长度设置成0了
+                    },
+                    axisLabel:{ //坐标轴刻度标签
+                        margin:7, //刻度标签与轴线之间的距离
+                        textStyle:{
+                            color:"#030303",  //坐标轴刻度文字的颜色
+                            fontSize:'16px' //坐标轴刻度文字的大小
+                        }
+                    },
+                    data: xdata
+                
+            }],
+            yAxis : [
+                {
+                    type : 'value', //类型数值轴
+                    name:'评价得分',    //坐标轴名称
+                    nameTextStyle:{     //名称的样式
+                        color:'#030303',
+                        fontSize:'16px'
+                    },
+                    nameGap:3,  //名称与Y轴的距离
+                    axisTick:{ //坐标轴刻度相关设置
+                        length:'0' //我设置成0了
+                    },
+                    axisLine:{//坐标轴线条相关设置(颜色等)
+                        lineStyle:{
+                            color:'#030303'
+                        }
+                    },
+                    axisLabel:{//坐标轴标签相关设置,距离颜色等
+                        margin:7,
+                        //formatter: '{value} °C',//标签内容内置的格式转化器比如这个表示在后面加一个c
+                        textStyle:{
+                            color:"#030303",  //坐标轴刻度文字的颜色
+                            fontSize:'16px' //坐标轴刻度文字的大小
+                        },
+                    },
+                    splitLine:{    //坐标轴分隔线。默认数值轴显示，类目轴不显示。
+                        show:false
+                    }
+                }
+            ],
+            grid:{ //直角坐标系内绘图网格
+                left:36  //由于1000显示被挡住了,所以我让他左移36px;这个功能类似于paddingleft
+            },
+            series: [{
+                    name: '评价得分',
+                    type: 'line',
+                    // data: [90, 93.33333333333333],
+                    data: ydata,
+                    itemStyle: {   
+                        normal: {
+                        color: '#008B8B'
                         }
                     }
                 }]
@@ -188,34 +777,27 @@ export const drawlinechart2 = (element, xdata, ydata) => {
 };
 
 
-export const drawlinetest = (element) => {
-        // 基于准备好的dom，初始化echarts图表
-    var myChart = echarts.init(document.getElementById(element));
-    var option = {
-    xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line'
-    }]
-};
 
-    // 为echarts对象加载数据
-    myChart.setOption(option);
-}
-
-export const draw3pie = (element, datas, sdata) => {
+export const draw3pie = (element, datas, sdata, name) => {
     var myChart = echarts.init(document.getElementById(element));
     var option = {
     title : {
-        text: 'School Type Pie Chart',
-        subtext: 'For U',
-        x:'center'
+        text: name,
+        // subtext: 'For U',
+                        left:'center',
+                textStyle:{
+                    //文字颜色
+                    color:'#030303',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'oblique',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'normal',
+                    //字体系列
+                    fontFamily:'微软雅黑',
+                    //字体大小
+　　　　                fontSize:16
+
+                    }
     },
     tooltip : {
         trigger: 'item',
@@ -232,13 +814,6 @@ export const draw3pie = (element, datas, sdata) => {
             type: 'pie',
             radius : '55%',
             center: ['50%', '60%'],
-            // data:[
-            //     {value:335, name:'直接访问'},
-            //     {value:310, name:'邮件营销'},
-            //     {value:234, name:'联盟广告'},
-            //     {value:135, name:'视频广告'},
-            //     {value:1548, name:'搜索引擎'}
-            // ],
             data: datas,
             itemStyle: {
                 emphasis: {
@@ -257,13 +832,12 @@ export const draw3pie = (element, datas, sdata) => {
 }
 
 
-export const draw3map = (element, datas) => {
+export const draw3map = (element,element2,datas) => {
         var myChart = echarts.init(document.getElementById(element));
 
         var option = {
             title: {
-                text: 'Package Map',
-                subtext: 'For U',
+                text: '全国各地区上传资源包数量',
                 left: 'center'
             },
             tooltip: {
@@ -276,7 +850,7 @@ export const draw3map = (element, datas) => {
             },
             visualMap: {
                 min: 0,
-                max: 2500,
+                max: 3000,
                 left: 'left',
                 top: 'bottom',
                 text: ['高','低'],           // 文本，默认为数值文本
@@ -287,11 +861,6 @@ export const draw3map = (element, datas) => {
                 orient: 'vertical',
                 left: 'right',
                 top: 'center',
-                feature: {
-                    dataView: {readOnly: false},
-                    restore: {},
-                    saveAsImage: {}
-                }
             },
             series: [
                 {
@@ -319,8 +888,22 @@ export const draw4bar = (element,xdata,ydata,zdata) => {
     var myChart = echarts.init(document.getElementById(element));
     var option = {
     title: {
-        text: 'Subject C',
-        subtext: '数据来自网络'
+        text: '综合排名靠前的课程展示',
+                    left:'left',
+                    textStyle:{
+                                //文字颜色
+                                color:'#030303',
+                                //字体风格,'normal','italic','oblique'
+                                fontStyle:'oblique',
+                                //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                                fontWeight:'normal',
+                                //字体系列
+                                fontFamily:'微软雅黑',
+                                //字体大小
+　　　　                            fontSize:16
+
+                        }
+                
     },
     tooltip: {
         trigger: 'axis',
@@ -362,7 +945,7 @@ export const draw4bar = (element,xdata,ydata,zdata) => {
   myChart.setOption(option);
 }
 
-export const draw5pie = (element, xdata, ydata) =>{
+export const draw5pie = (element, xdata, ydata,tilename) =>{
     var myChart = echarts.init(document.getElementById(element));
 var labelTop = {
     normal: {
@@ -383,7 +966,7 @@ var labelFromatter = {
     normal: {
         label: {
             formatter: function(params) {
-                return 100 - params.value + '%'
+                return params.value + '%'
             },
             textStyle: {
                 baseline: 'top'
@@ -414,7 +997,7 @@ var option = {
         data: xdata
     },
     title: {
-        text: 'Module',
+        text: tilename,
         textStyle: {
                 fontSize: 30
             },
@@ -424,10 +1007,6 @@ var option = {
     toolbox: {
         show: true,
         feature: {
-            dataView: {
-                show: true,
-                readOnly: false
-            },
             magicType: {
                 show: true,
                 type: ['pie', 'funnel'],
@@ -449,20 +1028,15 @@ var option = {
                         }
                     }
                 }
-            },
-            restore: {
-                show: true
-            },
-            saveAsImage: {
-                show: true
             }
         }
     },
     series: [{
         type: 'pie',
-        center: ['20%', '20%'],
+        center: ['20%', '25%'],
         radius: radius,
         x: '0%', // for funnel
+        y: '35%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',
@@ -475,9 +1049,10 @@ var option = {
         }]
     }, {
         type: 'pie',
-        center: ['40%', '20%'],
+        center: ['40%', '25%'],
         radius: radius,
         x: '20%', // for funnel
+        y: '35%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',
@@ -490,9 +1065,10 @@ var option = {
         }]
     }, {
         type: 'pie',
-        center: ['60%', '20%'],
+        center: ['60%', '25%'],
         radius: radius,
         x: '40%', // for funnel
+        y: '35%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',
@@ -505,9 +1081,10 @@ var option = {
         }]
     },{
         type: 'pie',
-        center: ['80%', '20%'],
+        center: ['80%', '25%'],
         radius: radius,
         x: '60%', // for funnel
+        y: '25%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',
@@ -520,9 +1097,10 @@ var option = {
         }]
     },{
         type: 'pie',
-        center: ['20%', '60%'],
+        center: ['20%', '65%'],
         radius: radius,
         x: '0%', // for funnel
+        y:'65%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',
@@ -535,9 +1113,10 @@ var option = {
         }]
     },{
         type: 'pie',
-        center: ['40%', '60%'],
+        center: ['40%', '65%'],
         radius: radius,
         x: '20%', // for funnel
+        y:'65%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',
@@ -550,9 +1129,10 @@ var option = {
         }]
     },{
         type: 'pie',
-        center: ['60%', '60%'],
+        center: ['60%', '65%'],
         radius: radius,
         x: '40%', // for funnel
+        y:'65%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',
@@ -565,9 +1145,10 @@ var option = {
         }]
     },{
         type: 'pie',
-        center: ['80%', '60%'],
+        center: ['80%', '65%'],
         radius: radius,
         x: '60%', // for funnel
+        y:'65%',
         itemStyle: labelFromatter,
         data: [{
             name: 'other',

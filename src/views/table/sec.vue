@@ -1,88 +1,35 @@
-<!-- <template>
-	<div>
-		<ul>
-			<li v-if="msg">
-				{{msg.package_from}}
-				{{users}}
-			</li>
-			<li v-else>
-				there is nothing return!
-			</li>
-		</ul>
-	</div>
-</template>
-<script type="text/javascript">
-import {getmsg,testout} from '../../api/api'
-import axios from 'axios'
-export default {
-	name: 'secondtable',
-	data() {
-		return {
-			msg:['hello'],
-			users: []
-		}
-	},
-	methods:{
-		getUsers () {
-      		axios.get('http://127.0.0.1:8000/table4/')
-        		.then(res => this.users = res.data)
-        		.catch(error => console.log(error))
-    	},
-		getm(){
-			getmsg().then(response => {this.users = response.data})
-			.catch(function(error) {
-				console.log('the data can not return back!');
-			});
-		}
-	},
-	created(){
-		this.getm()
-		// this.getUsers()
-		// console.log("the getmsg is be used!")
-	}
-}
-</script>
-<style type="text/css">
-</style> -->
-
-
-<template>       
+<template> 
+  <div>      
     <div>
-        <div id="LineChart" style="width:800px; height:500px">{{xdata}}</div>
+        <div id="LineChart" style="width:800px; height:500px"></div>
     </div>
-<!--     <li>Test Line Chart</li>
-    <li>
-    <div>
-        <div id="TestLineChart" style="width:800px; height:500px">{{xdata}}</div>
-    </div>
-    </li> -->
+  </div>
 </template>
 <script type="text/javascript">
 import {getmsg} from '../../api/api'
-import {drawlinechart, drawbar, drawlinechart1, drawlinechart2, drawlinetest} from '../../api/chart'
+import {drawlinechart, drawbar, drawlinechart1, drawlinechart2, drawlinechart3, drawlinechart4} from '../../api/chart'
 export default{
     name: 'forthtable',
     data() {
       return {
         xdata: [],
-        ydata: []
+        ydata: [],
+        y1data: [],
+        y2data: []
       }
     },
     methods:{
       drawLine(){
       getmsg().then(response => {
         this.xdata = response.data[0],
-        this.ydata = response.data[1]
-        // drawlinechart('LineChart',this.xdata,this.ydata)
-        // drawbar('LineChart',this.xdata,this.ydata,'baids')
-        // drawlinetest('LineChart')
-        // console.log('LineChart1')
-        // drawlinechart1('LineChart')
-        // console.log('LineChart2')
-        drawlinechart2('LineChart',this.xdata, this.ydata)
-        // drawlinetest('LineChart')
-        console.log(this.xdata)
-        console.log('asd')
+        this.ydata = response.data[1],
+        this.y1data = response.data[2],
+        this.y2data = response.data[3]
+
+        drawlinechart2('LineChart',this.xdata, this.ydata,this.y1data,this.y2data)
+        // drawlinechart3('LineChart1',this.xdata, this.y1data)
+        // drawlinechart4('LineChart2',this.xdata, this.y2data)
+        console.log('linechart')
       })
         .catch(function(error) {
           console.log('the data can not return back!');

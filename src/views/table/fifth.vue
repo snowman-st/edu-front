@@ -2,22 +2,27 @@
   <div>
     <ul>
       <li>
-        <div id="Pie1Chart" :style="{width: '1200px', height: '500px'}"></div>
+        <div :style="{width: '800px',height:'100px'}">
+          资源组织方式得分为：{{score}},各模块详细情况展示如下
+        </div>
       </li>
-
       <li>
-        <div id="Pie2Chart" :style="{width: '1200px', height: '500px'}"></div>
+        <div id="Pie1Chart" :style="{width: '800px', height: '500px'}"></div>
       </li>
-
+      <li :style="{width: '800px',height:'50px'}"></li>
       <li>
-        <div id="BarChart" :style="{width: '1200px', height: '500px'}"></div>
+        <div id="Pie2Chart" :style="{width: '800px', height: '500px'}"></div>
+      </li>
+      <li :style="{width: '800px',height:'50px'}"></li>
+      <li>
+        <div id="BarChart" :style="{width: '800px', height: '500px'}"></div>
       </li>
     </ul>
   </div>
 </template>
 <script type="text/javascript">
 import {get5msg} from '../../api/api'
-import {draw3pie,draw3map,drawbar,draw5pie} from '../../api/chart'
+import {draw5bar,draw5pie} from '../../api/chart'
 export default{
     name: 'fifthtable',
     data() {
@@ -25,8 +30,8 @@ export default{
         xdata: [],
         y1data: [],
         y2data: [],
-        y3data: []     
-
+        y3data: [],    
+        score:0
 
       }
     },
@@ -37,10 +42,11 @@ export default{
         this.y1data = response.data[1],
         this.y2data = response.data[2],
         this.y3data = response.data[3]
+        this.score = response.data[4]
 
-        draw5pie('Pie1Chart',this.xdata, this.y1data)
-        draw5pie('Pie2Chart',this.xdata, this.y2data)
-        drawbar('BarChart', this.xdata, this.y3data)
+        draw5pie('Pie1Chart',this.xdata, this.y1data,'各学科模块化程度')
+        draw5pie('Pie2Chart',this.xdata, this.y2data,'各学科层次化程度')
+        draw5bar('BarChart', this.xdata, this.y3data,'链接总数')
 
 
         console.log(this.xdata)
